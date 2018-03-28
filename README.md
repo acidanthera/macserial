@@ -12,4 +12,4 @@ Run with `-h` argument to see all available arguments.
 * [al3xjames](https://github.com/al3xtjames) for several hints and another [database](https://github.com/al3xtjames/MacGen)
 * CCC and ...numberinfo.com for hiding their work and inspiring others to reverse it
 * Several guys from AppleLife for conducting relevant parts of the research, thanks a lot!
-- [vit9696](https://github.com/vit9696) for the tool
+* [vit9696](https://github.com/vit9696) for the tool
