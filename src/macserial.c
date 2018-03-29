@@ -335,7 +335,7 @@ static bool get_serial_info(const char *serial, SERIALINFO *info, bool print) {
 
     for (int32_t i = 0; i < 2; i++) {
       if (info->week[i] >= '0' && info->week[i] <= '9') {
-        info->decodedWeek += (10 - i*10) * (info->week[i] - '0');
+        info->decodedWeek += (i == 0 ? 10 : 1) * (info->week[i] - '0');
       } else {
         info->decodedWeek = -1;
         printf("WARN: Invalid week symbol '%c'!\n", info->week[i]);
