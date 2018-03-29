@@ -465,7 +465,7 @@ static bool get_serial(SERIALINFO *info) {
     }
 
     info->year[0] = AppleYearReverse[(info->decodedYear - 2010) * 2 + (info->decodedWeek >= 27)];
-    info->week[0] = AppleWeekReverse[info->decodedWeek % 27];
+    info->week[0] = AppleWeekReverse[info->decodedWeek];
   }
 
   if (info->decodedLine < 0)

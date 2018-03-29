@@ -929,7 +929,7 @@ static int32_t AppleTblWeekAdd[] = { 0,  0,  0, 26,  0,  0, 26,  0,  0, 26,  0, 
 // Used for week                     A   B   C   D   E   F   G   H   I   J   K   L   M   N   O   P   Q   R   S   T   U   V   W   X   Y   Z
 static int32_t AppleTblWeek[] =    { 0,  0, 10, 11,  0, 12, 13, 14,  0, 15, 16, 17, 18, 19,  0, 20, 21, 22,  0, 23,  0, 24, 25, 26, 27,  0};
 static const char *AppleWeekBlacklist = "ABEIOSUZ";
-static const char *AppleWeekReverse   = "123456789CDFGHJKLMNPQRTVWXY";
+static const char *AppleWeekReverse   = "0123456789CDFGHJKLMNPQRTVWX123456789CDFGHJKLMNPQRTVWXY";
 
 #ifdef static_assert
 static_assert(ARRAY_SIZE(AppleTblBase34) == 26 && ARRAY_SIZE(AppleTblYear) == 26 &&
