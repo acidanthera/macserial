@@ -1,0 +1,21 @@
+language: c
+
+matrix:
+  include:
+  - os: osx
+    compiler: clang
+    before_install:
+    - brew update
+    - brew install mingw-w64
+    deploy:
+      provider: releases
+      skip_cleanup: true
+      file:
+      - "bin/macserial-*-mac.zip"
+      - "bin/macserial-*-win32.zip"
+      file_glob: true
+      api_key:
+        secure: "siYN4Vm+Ekz6Xn5UNEJCtrRb69rlbA2Hlb3PmB6uW6n13V7P3XDkZZ/r5FjSMsn5yz6GEjykQsb+aILdl66xSnDVLc2PP4eKs3LOPOlgVKE9YOzohbCRw/5x3gTkKp684zo8Qgriw3qvMKrPGkCX1qLdfU/ozLeklVMiL4bmAzsWB8HOVB9WfKLOmRIRTRwMTH20eo+R6sE5SElstNY8OPnyWxLOj6AHNnvLYRwrMWt9NFvsU2buTt9fX1puZPIOfJIS0/ppeMuZgFF+lv0r/biz6cXyncRxdKes0MKiUwNvkoU/MrwR0QGxu0kcJl2tU0ErGbuZA/lCTbDuFhktgAmDbRUnAMAENk9ihFe8Ws9Z6AQ1ubKsqbC3N4nZ84E4aUymw1uJbpCzin2ssZUUcrmNLfvtbkHGDHVVQoEDMR/VXyub+LPoKA8tBVKO4oQ8Wx6eLKqTtq1++DWpnqLOccsXEuWRtoelu6fZyr9InQ1HWLwwlG4RlddxrE1QTi3d+2dHC6mkPPM5iHMLhtJVuY0KH/N3smxp6TU0EG5+HBFXs6ebKHTXxM+i1cD/CgAGLS2qmDIHNoFIdLUHCHqt5NXPlZvhwJKyVwqApeaKumUw56t5ex6EJobFXUSs8kHMm413yWyPYoYYKwMyv3PYzFksuZjgg5w6VgJhs1Ri8MI="
+      on:
+        tags: true
+script: ./build.tool
