@@ -516,7 +516,7 @@ static const char *AppleModelCode[][APPLE_MODEL_CODE_MAX] = {
   /* iMac10,1      */ {"5PE"},
   /* iMac11,1      */ {"5PJ"},
   /* iMac11,2      */ {"DB7"},
-  /* iMac11,3      */ {"DNR"},
+  /* iMac11,3      */ {"DNR", "DB6"},
   /* iMac12,1      */ {"DHJF"},
   /* iMac12,2      */ {"DHJQ"},
   /* iMac13,1      */ {"DNCT", "DNCR", "DNML", "DNMM", "F8QM", "F8QN", "F9RN", "FC6M", "FC6N", "FC6P", "FD55", "FD5Y", "FF7L", "FFVW", "FFVY", "FG46", "FGC4", "FGMR", "FGMT", "FL8N", "FM8L", "FM8M", "FM8N", "FMLG", "FP12"},
