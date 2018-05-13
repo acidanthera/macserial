@@ -346,7 +346,7 @@ static bool get_serial_info(const char *serial, SERIALINFO *info, bool print) {
   }
 
   if (info->decodedWeek < SERIAL_WEEK_MIN || info->decodedWeek > SERIAL_WEEK_MAX) {
-    printf("WANR: Decoded week %d is out of valid range [%d, %d]!", info->decodedWeek, SERIAL_WEEK_MIN, SERIAL_WEEK_MAX);
+    printf("WARN: Decoded week %d is out of valid range [%d, %d]!", info->decodedWeek, SERIAL_WEEK_MIN, SERIAL_WEEK_MAX);
     info->decodedWeek = -1;
   }
 
