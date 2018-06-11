@@ -251,7 +251,7 @@ static bool get_serial_info(const char *serial, SERIALINFO *info, bool print) {
       model_len = strlen(code);
       assert(model_len == MODEL_CODE_OLD_LEN || model_len == MODEL_CODE_NEW_LEN);
       if (!strncmp(serial + serial_len - model_len, code, model_len)) {
-        strncpy(info->model, code, model_len);
+        strncpy(info->model, code, model_len+1);
         info->modelIndex = (int32_t)i;
         break;
       }
@@ -264,7 +264,7 @@ static bool get_serial_info(const char *serial, SERIALINFO *info, bool print) {
       model_len = MODEL_CODE_NEW_LEN;
     else
       model_len = MODEL_CODE_OLD_LEN;
-    strncpy(info->model, serial + serial_len - model_len, model_len);
+    strncpy(info->model, serial + serial_len - model_len, model_len+1);
   }
 
   // Lookup production location
@@ -272,7 +272,7 @@ static bool get_serial_info(const char *serial, SERIALINFO *info, bool print) {
   info->modernCountryIdx = -1;
 
   if (serial_len == SERIAL_NEW_LEN) {
-    strncpy(info->country, serial, COUNTRY_NEW_LEN);
+    strncpy(info->country, serial, COUNTRY_NEW_LEN+1);
     serial += COUNTRY_NEW_LEN;
     for (size_t i = 0; i < ARRAY_SIZE(AppleLocations); i++) {
       if (!strcmp(info->country, AppleLocations[i])) {
@@ -281,7 +281,7 @@ static bool get_serial_info(const char *serial, SERIALINFO *info, bool print) {
       }
     }
   } else {
-    strncpy(info->country, serial, COUNTRY_OLD_LEN);
+    strncpy(info->country, serial, COUNTRY_OLD_LEN+1);
     serial += COUNTRY_OLD_LEN;
     for (size_t i = 0; i < ARRAY_SIZE(AppleLegacyLocations); i++) {
       if (!strcmp(info->country, AppleLegacyLocations[i])) {
@@ -426,16 +426,16 @@ static bool get_serial(SERIALINFO *info) {
   }
 
   if (info->model[0] == '\0')
-    strncpy(info->model, get_model_code((AppleModel)info->modelIndex, false), MODEL_CODE_NEW_LEN);
+    strncpy(info->model, get_model_code((AppleModel)info->modelIndex, false), MODEL_CODE_NEW_LEN+1);
 
   size_t country_len = strlen(info->country);
   if (country_len == 0) {
     // Random country choice strongly decreases key verification probability.
     country_len = strlen(info->model) == MODEL_CODE_NEW_LEN ? COUNTRY_NEW_LEN : COUNTRY_OLD_LEN;
     if (info->modelIndex < 0)
-      strncpy(info->country, country_len == COUNTRY_OLD_LEN ? AppleLegacyLocations[0] : AppleLocations[0], COUNTRY_NEW_LEN);
+      strncpy(info->country, country_len == COUNTRY_OLD_LEN ? AppleLegacyLocations[0] : AppleLocations[0], COUNTRY_NEW_LEN+1);
     else
-      strncpy(info->country, &ApplePlatformData[info->modelIndex].serialNumber[0], country_len);
+      strncpy(info->country, &ApplePlatformData[info->modelIndex].serialNumber[0], country_len+1);
   }
 
   if (info->decodedYear < 0) {
@@ -773,7 +773,7 @@ int main(int argc, char *argv[]) {
         printf("Country location %s is neither %d nor %d symbols long!\n", argv[i], COUNTRY_OLD_LEN, COUNTRY_NEW_LEN);
         return EXIT_FAILURE;
       }
-      strncpy(info.country, argv[i], COUNTRY_NEW_LEN);
+      strncpy(info.country, argv[i], COUNTRY_NEW_LEN+1);
     } else if (!strcmp(argv[i], "-p") || !strcmp(argv[i], "--platform")) {
       if (mode == MODE_SYSTEM_INFO) mode = MODE_GENERATE_CURRENT;
       if (++i == argc) return usage(argv[0]);
@@ -782,7 +782,7 @@ int main(int argc, char *argv[]) {
         printf("Platform code %s is neither %d nor %d symbols long!\n", argv[i], MODEL_CODE_OLD_LEN, MODEL_CODE_NEW_LEN);
         return EXIT_FAILURE;
       }
-      strncpy(info.model, argv[i], MODEL_CODE_NEW_LEN);
+      strncpy(info.model, argv[i], MODEL_CODE_NEW_LEN+1);
     } else if (!strcmp(argv[i], "-o") || !strcmp(argv[i], "--copy")) {
       if (mode == MODE_SYSTEM_INFO) mode = MODE_GENERATE_CURRENT;
       if (++i == argc) return usage(argv[0]);
