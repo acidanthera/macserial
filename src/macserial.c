@@ -103,6 +103,37 @@ static bool get_ascii7(uint32_t value, char *dst, size_t sz) {
   return true;
 }
 
+static const char *verify_mlb_code(const char *alphabet, char key) {
+  while (1) {
+    char curr = *alphabet++;
+    if (curr <= 0)
+      break;
+    if (curr == key)
+      return alphabet - 1;
+  }
+
+  if (key)
+    return NULL;
+
+  return alphabet - 1;
+}
+
+static bool verify_mlb(const char *mlb, size_t len) {
+  const char mlb_alphabet[] = "0123456789ABCDEFGHJKLMNPQRSTUVWXYZ";
+  int checksum = 0;
+  for (size_t i = 0; i < len; ++i) {
+    const char *code = verify_mlb_code(mlb_alphabet, mlb[len - i - 1]);
+    if (!code)
+      return false;
+    int diff = code - mlb_alphabet;
+    if (i & 1)
+      checksum += 3 * diff;
+    else
+      checksum += diff;
+  }
+  return checksum % 34 == 0;
+}
+
 // Taken from https://en.wikipedia.org/wiki/Xorshift#Example_implementation
 // I am not positive what is better to use here (especially on Windows).
 // Fortunately we only need something only looking random.
@@ -349,7 +380,7 @@ static bool get_serial_info(const char *serial, SERIALINFO *info, bool print) {
   }
 
   if (info->decodedWeek < SERIAL_WEEK_MIN || info->decodedWeek > SERIAL_WEEK_MAX) {
-    printf("WARN: Decoded week %d is out of valid range [%d, %d]!", info->decodedWeek, SERIAL_WEEK_MIN, SERIAL_WEEK_MAX);
+    printf("WARN: Decoded week %d is out of valid range [%d, %d]!\n", info->decodedWeek, SERIAL_WEEK_MIN, SERIAL_WEEK_MAX);
     info->decodedWeek = -1;
   }
 
@@ -498,77 +529,79 @@ static bool get_serial(SERIALINFO *info) {
 
 static void get_mlb(SERIALINFO *info, char *dst, size_t sz) {
   // This is a direct reverse from CCC, rework it later...
-  uint32_t year = 0, week = 0;
+  do {
+    uint32_t year = 0, week = 0;
 
-  bool legacy = strlen(info->country) == COUNTRY_OLD_LEN;
+    bool legacy = strlen(info->country) == COUNTRY_OLD_LEN;
 
-  if (legacy) {
-    year = (uint32_t)(info->year[0] - '0');
-    week = (uint32_t)(info->week[0] - '0') * 10 + (uint32_t)(info->week[1] - '0');
-  } else {
-    char syear = info->year[0];
-    char sweek = info->week[0];
+    if (legacy) {
+      year = (uint32_t)(info->year[0] - '0');
+      week = (uint32_t)(info->week[0] - '0') * 10 + (uint32_t)(info->week[1] - '0');
+    } else {
+      char syear = info->year[0];
+      char sweek = info->week[0];
 
-    const char srcyear[] = "CDFGHJKLMNPQRSTVWXYZ";
-    const char dstyear[] = "00112233445566778899";
-    for (size_t i = 0; i < ARRAY_SIZE(srcyear)-1; i++) {
-      if (syear == srcyear[i]) {
-        year = (uint32_t)(dstyear[i] - '0');
-        break;
+      const char srcyear[] = "CDFGHJKLMNPQRSTVWXYZ";
+      const char dstyear[] = "00112233445566778899";
+      for (size_t i = 0; i < ARRAY_SIZE(srcyear)-1; i++) {
+        if (syear == srcyear[i]) {
+          year = (uint32_t)(dstyear[i] - '0');
+          break;
+        }
+      }
+
+      const char overrides[] = "DGJLNQSVXZ";
+      for (size_t i = 0; i < ARRAY_SIZE(overrides)-1; i++) {
+        if (syear == overrides[i]) {
+          week = 27;
+          break;
+        }
+      }
+
+      const char srcweek[] = "123456789CDFGHJKLMNPQRSTVWXYZ";
+      for (size_t i = 0; i < ARRAY_SIZE(srcweek)-1; i++) {
+        if (sweek == srcweek[i]) {
+          week += i + 1;
+          break;
+        }
+      }
+
+      // This is silently not handled, and it should not be needed for normal serials.
+      // Bugged MacBookPro6,2 and MacBookPro7,1 will gladly hit it.
+      if (week < SERIAL_WEEK_MIN) {
+        snprintf(dst, sz, "FAIL-ZERO-%c", sweek);
+        return;
       }
     }
 
-    const char overrides[] = "DGJLNQSVXZ";
-    for (size_t i = 0; i < ARRAY_SIZE(overrides)-1; i++) {
-      if (syear == overrides[i]) {
-        week = 27;
-        break;
+    week--;
+
+    if (week <= 9) {
+      if (week == 0) {
+        week = SERIAL_WEEK_MAX;
+        if (year == 0)
+          year = 9;
+        else
+          year--;
       }
     }
 
-    const char srcweek[] = "123456789CDFGHJKLMNPQRSTVWXYZ";
-    for (size_t i = 0; i < ARRAY_SIZE(srcweek)-1; i++) {
-      if (sweek == srcweek[i]) {
-        week += i + 1;
-        break;
-      }
+    if (legacy) {
+      char code[5] = {0};
+      // The loop is not present in CCC, but it throws an exception here,
+      // and effectively generates nothing. The logic is crazy :/.
+      // Also, it was likely meant to be written as pseudo_random() % 0x8000.
+      while (!get_ascii7(pseudo_random_between(0, 0x7FFE) * 0x73BA1C, code, sizeof(code)));
+      snprintf(dst, sz, "%s%d%02d0%s%s", info->country, year, week, info->model, code);
+    } else {
+      const char *part1 = MLBBlock1[pseudo_random() % ARRAY_SIZE(MLBBlock1)];
+      const char *part2 = MLBBlock2[pseudo_random() % ARRAY_SIZE(MLBBlock2)];
+      const char *part3 = MLBBlock3[pseudo_random() % ARRAY_SIZE(MLBBlock3)];
+      const char *part4 = MLBBlock4[pseudo_random() % ARRAY_SIZE(MLBBlock4)];
+
+      snprintf(dst, sz, "%s%d%02d%s%s%s%s", info->country, year, week, part1, part2, part3, part4);
     }
-
-    // This is silently not handled, and it should not be needed for normal serials.
-    // Bugged MacBookPro6,2 and MacBookPro7,1 will gladly hit it.
-    if (week < SERIAL_WEEK_MIN) {
-      snprintf(dst, sz, "FAIL-ZERO-%c", sweek);
-      return;
-    }
-  }
-
-  week--;
-
-  if (week <= 9) {
-    if (week == 0) {
-      week = SERIAL_WEEK_MAX;
-      if (year == 0)
-        year = 9;
-      else
-        year--;
-    }
-  }
-
-  if (legacy) {
-    char code[5] = {0};
-    // The loop is not present in CCC, but it throws an exception here,
-    // and effectively generates nothing. The logic is crazy :/.
-    // Also, it was likely meant to be written as pseudo_random() % 0x8000.
-    while (!get_ascii7(pseudo_random_between(0, 0x7FFE) * 0x73BA1C, code, sizeof(code)));
-    snprintf(dst, sz, "%s%d%02d0%s%s", info->country, year, week, info->model, code);
-  } else {
-    const char *part1 = MLBBlock1[pseudo_random() % ARRAY_SIZE(MLBBlock1)];
-    const char *part2 = MLBBlock2[pseudo_random() % ARRAY_SIZE(MLBBlock2)];
-    const char *part3 = MLBBlock3[pseudo_random() % ARRAY_SIZE(MLBBlock3)];
-    const char *part4 = MLBBlock4[pseudo_random() % ARRAY_SIZE(MLBBlock4)];
-
-    snprintf(dst, sz, "%s%d%02d%s%s%s%s", info->country, year, week, part1, part2, part3, part4);
-  }
+  } while (!verify_mlb(dst, strlen(dst)));
 }
 
 static void get_system_info(void) {
@@ -643,6 +676,8 @@ static void get_system_info(void) {
 
   if (mlb) {
     printf("%14s: %.*s\n", "MLB", (int)CFDataGetLength(mlb), CFDataGetBytePtr(mlb));
+    if (!verify_mlb((const char *)CFDataGetBytePtr(mlb), CFDataGetLength(mlb)))
+      printf("WARN: Invalid MLB checksum!\n");
     CFRelease(mlb);
   }
 
