@@ -56,7 +56,7 @@ typedef enum {
   MacBookPro14_1, // Intel Core i5-7360U @ 2.30 GHz
   MacBookPro14_2, // Intel Core i5-7267U @ 3.09 GHz
   MacBookPro14_3, // Intel Core i7-7700HQ @ 2.80 GHz
-  MacBookPro15_1, //Intel Core i9 @ 2.9 GHz
+  MacBookPro15_1, // Intel Core i9-8950HK @ 2.90 GHz
   MacBookAir1_1, // Intel Core 2 Duo P7500 @ 1.60 GHz
   MacBookAir2_1, // Intel Core 2 Duo L9600 @ 2.13 GHz
   MacBookAir3_1, // Intel Core 2 Duo U9400 @ 1.40 GHz
@@ -487,7 +487,7 @@ static const char *AppleModelCode[][APPLE_MODEL_CODE_MAX] = {
   /* MacBookPro14,1*/ {"HV29", "HV22", "HV2F"},
   /* MacBookPro14,2*/ {"HV2N"},
   /* MacBookPro14,3*/ {"HTD5", "HTD6", "HTD8", "HTD9", "HTDF"},
-  /* MacBookPro15,1*/ {"KGYG"},
+  /* MacBookPro15,1*/ {"JG5H", "JG5J", "JG5K", "JG5L", "JG5M", "JGH5", "JGH6", "JGH7", "JGH8", "KGYF", "KGYG", "KGYH", "KQ9Q", "KQ9R", "KQ9T", "KQ9V", "KQ9W", "KQ9X", "KQ9Y", "KQC0", "KQC1", "KQC2", "KQC3", "KQC4", "KQC5", "KQC6", "KQC7", "KQC8", "KQC9", "KQCC", "KQCD", "KQCF", "KQCG", "KQCH", "KQCJ", "KQCK", "KQCL", "KQCM", "KQCN", "KQCP", "KQCQ", "KQCR", "KQCT", "KQCV", "KQCW", "KQCX", "KWJ2"},
   /* MacBookAir1,1 */ {"18X"},
   /* MacBookAir2,1 */ {"9A7"},
   /* MacBookAir3,1 */ {"D0QX"},
