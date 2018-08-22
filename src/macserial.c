@@ -282,7 +282,8 @@ static bool get_serial_info(const char *serial, SERIALINFO *info, bool print) {
       model_len = strlen(code);
       assert(model_len == MODEL_CODE_OLD_LEN || model_len == MODEL_CODE_NEW_LEN);
       if (!strncmp(serial + serial_len - model_len, code, model_len)) {
-        strncpy(info->model, code, model_len+1);
+        strncpy(info->model, code, sizeof(info->model));
+        info->model[sizeof(info->model)-1] = '\0';
         info->modelIndex = (int32_t)i;
         break;
       }
