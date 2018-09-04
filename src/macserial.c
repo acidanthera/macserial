@@ -873,6 +873,8 @@ int main(int argc, char *argv[]) {
       printf("%14s: %s\n", "Base Serial", ApplePlatformData[j].serialNumber);
       printf("%14s: ", "Model codes");
       get_model_code((AppleModel)j, true);
+      printf("%14s: ", "Board codes");
+      get_board_code((AppleModel)j, true);
       puts("");
     }
     printf("Available legacy location codes:\n");
