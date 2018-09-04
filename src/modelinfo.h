@@ -1024,17 +1024,6 @@ static const char *MLBBlock2[] = {
 };
 
 static const char *MLBBlock3[] = {
-  "DYWF", "F117", "F502", "F505", "F9GY", "F9H0",
-  "F9H1", "F9H2", "DYWD", "F504", "F116", "F503",
-  "F2FR", "F653", "F49P", "F651", "F49R", "F652",
-  "DYW3", "F64V", "F0V5", "F64W", "FF4G", "FF4H",
-  "FF4J", "FF4K", "FF4L", "FF4M", "FF4N", "FF4P",
-  "DNY3", "DP00", "DJWK", "DM66", "DNJK", "DKG1",
-  "DM65", "DNJJ", "DKG2", "DM67", "DNJL", "DJWM",
-  "DMT3", "DMT5", "DJWN", "DM69", "DJWP", "DM6C"
-};
-
-static const char *MLBBlock4[] = {
   "1H", "1M", "AD", "1F", "A8", "UE", "JA", "JC", "8C", "CB", "FB"
 };
 

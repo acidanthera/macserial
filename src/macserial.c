@@ -613,9 +613,9 @@ static void get_mlb(SERIALINFO *info, char *dst, size_t sz) {
       const char *part1 = MLBBlock1[pseudo_random() % ARRAY_SIZE(MLBBlock1)];
       const char *part2 = MLBBlock2[pseudo_random() % ARRAY_SIZE(MLBBlock2)];
       const char *board = get_board_code(info->modelIndex, false);
-      const char *part4 = MLBBlock4[pseudo_random() % ARRAY_SIZE(MLBBlock4)];
+      const char *part3 = MLBBlock3[pseudo_random() % ARRAY_SIZE(MLBBlock3)];
 
-      snprintf(dst, sz, "%s%d%02d%s%s%s%s", info->country, year, week, part1, part2, board, part4);
+      snprintf(dst, sz, "%s%d%02d%s%s%s%s", info->country, year, week, part1, part2, board, part3);
     }
   } while (!verify_mlb(dst, strlen(dst)));
 }
