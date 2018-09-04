@@ -245,6 +245,21 @@ static const char *get_model_code(AppleModel model, bool print) {
   return codes[0];
 }
 
+static const char *get_board_code(AppleModel model, bool print) {
+  const char **codes = &AppleBoardCode[model][0];
+
+  if (print) {
+    for (uint32_t i = 0; i < APPLE_BOARD_CODE_MAX && codes[i]; i++)
+      if (i+1 != APPLE_BOARD_CODE_MAX && codes[i+1])
+        printf("%s, ", codes[i]);
+      else
+        printf("%s\n", codes[i]);
+  }
+
+  // Always choose the first model for stability by default.
+  return codes[0];
+}
+
 static bool get_serial_info(const char *serial, SERIALINFO *info, bool print) {
   if (!info)
     return false;
@@ -597,10 +612,10 @@ static void get_mlb(SERIALINFO *info, char *dst, size_t sz) {
     } else {
       const char *part1 = MLBBlock1[pseudo_random() % ARRAY_SIZE(MLBBlock1)];
       const char *part2 = MLBBlock2[pseudo_random() % ARRAY_SIZE(MLBBlock2)];
-      const char *part3 = MLBBlock3[pseudo_random() % ARRAY_SIZE(MLBBlock3)];
+      const char *board = get_board_code(info->modelIndex, false);
       const char *part4 = MLBBlock4[pseudo_random() % ARRAY_SIZE(MLBBlock4)];
 
-      snprintf(dst, sz, "%s%d%02d%s%s%s%s", info->country, year, week, part1, part2, part3, part4);
+      snprintf(dst, sz, "%s%d%02d%s%s%s%s", info->country, year, week, part1, part2, board, part4);
     }
   } while (!verify_mlb(dst, strlen(dst)));
 }
