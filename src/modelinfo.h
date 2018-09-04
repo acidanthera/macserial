@@ -543,7 +543,7 @@ static const char *AppleModelCode[][APPLE_MODEL_CODE_MAX] = {
   /* iMac18,1      */ {"H7JY"},
   /* iMac18,2      */ {"J1G5"},
   /* iMac18,3      */ {"J1GJ", "J1GQ"},
-  /* iMacPro1,1    */ {"HX87"},
+  /* iMacPro1,1    */ {"HX87", "HX8F", "JL53", "JL54", "JL55", "JLCN", "JLCP", "JLCR", "JLCT", "JLCV", "JLCW", "JLCX", "JLCY", "JLD0", "JLD1", "JLD2"},
   /* MacPro1,1     */ {"UPZ"},
   /* MacPro2,1     */ {"UPZ"},
   /* MacPro3,1     */ {"5J4", "XYK", "XYL", "1Z9" },
