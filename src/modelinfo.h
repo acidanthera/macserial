@@ -80,6 +80,7 @@ typedef enum {
   Macmini6_1, // Intel Core i5-3210M @ 2.50 GHz
   Macmini6_2, // Intel Core i7-3615QM @ 2.30 GHz
   Macmini7_1, // Intel Core i5-4278U @ 2.60 GHz
+  Macmini8_1, //Intel Core i3-8100 @ 3.6 GHz
   iMac4_1, // Intel Core 2 Duo T7200 @ 2.00 GHz
   iMac4_2, // Intel Core 2 Duo T5600 @ 1.83 GHz
   iMac5_1, // Intel Core 2 Duo T7400 @ 2.16 GHz
@@ -120,7 +121,7 @@ typedef enum {
   Xserve3_1, // Intel Xeon E5520 @ 2.26 GHz
 } AppleModel;
 
-#define APPLE_MODEL_MAX 106
+#define APPLE_MODEL_MAX 107
 
 static PLATFORMDATA ApplePlatformData[] = {
   { "MacBook1,1", "MB11.88Z.0061.B03.0610121324", "Mac-F4208CC8",
@@ -327,6 +328,9 @@ static PLATFORMDATA ApplePlatformData[] = {
   { "Macmini7,1", "MM71.88Z.0226.B00.1709290808", "Mac-35C5E08120C7EEAF",
     "Mac mini", "1.0", "C02NN7NHG1J0", "Mini-Aluminum",
     { 0x02, 0x00, 0x24, 0x00, 0x0F, 0x00 },"j64", "j64", 0x00F04008 },
+  { "Macmini8,1", "MM81.88Z.0226.B00.1709290808", "",
+    "Mac mini", "1.0", "C07XL9WEJYVX", "Mini-Aluminum",
+    { 0x02, 0x00, 0x24, 0x00, 0x0F, 0x00 },"j64", "j64", 0x00F04008 },
   { "iMac4,1", "IM41.88Z.0055.B08.0609061538", "Mac-F42787C8",
     "iMac", "1.0", "W8608HACU2P", "iMac",
     { 0x01, 0x00, 0x01, 0x00, 0x0F, 0x00 },"m38m39", "m38", 0x00073002 },
@@ -445,7 +449,7 @@ static PLATFORMDATA ApplePlatformData[] = {
 
 // Note, first code is always the code used by default at generation.
 // It should match with the suffix used in ApplePlatformData.
-#define APPLE_MODEL_CODE_MAX 64
+#define APPLE_MODEL_CODE_MAX 65
 static const char *AppleModelCode[][APPLE_MODEL_CODE_MAX] = {
   /* MacBook1,1    */ {"U9B"},
   /* MacBook2,1    */ {"WGP"},
@@ -515,6 +519,7 @@ static const char *AppleModelCode[][APPLE_MODEL_CODE_MAX] = {
   /* Macmini6,1    */ {"DY3H", "DWYL", "DWYM", "DY3G", "F9RK", "F9RL", "F9RM", "F9VV", "F9VW", "F9W0", "F9W1", "F9W2", "FD9G", "FD9H", "FD9J", "FD9K", "FDWK", "FGML", "FRFP", "FW56", "FW57", "G430"},
   /* Macmini6,2    */ {"DWYN", /* <- late, early */ "DWYL", "DWYM", "DY3G", "DY3H", "F9RK", "F9RL", "F9RM", "F9VV", "F9VW", "F9W0", "F9W1", "F9W2", "FD9G", "FD9H", "FD9J", "FD9K", "FDWK", "FGML", "FRFP", "FW56", "FW57", "G430", /* late */ "DWYN", "DY3J", "F9VY", "F9W3", "FC08", "FCCW", "FP14", "FP39"},
   /* Macmini7,1    */ {"G1J0", "G1HV", "G1HW", "G1HY", "G1J1", "G1J2", "GCVG", "GCVH", "GCVJ", "GCVN", "GCVP", "GCVQ", "GCVV", "GCVW", "GCVY", "GCW0", "GCW1", "GF1N", "GF1Q", "GF1T", "GJDC"},
+  /* Macmini8,1    */ {"JYVX"},
   /* iMac4,1       */ {"U2P"},
   /* iMac4,2       */ {"V2H"},
   /* iMac5,1       */ {"X1A"},
@@ -555,7 +560,7 @@ static const char *AppleModelCode[][APPLE_MODEL_CODE_MAX] = {
   /* Xserve3,1     */ {"6HS"},
 };
 
-#define APPLE_BOARD_CODE_MAX 128
+#define APPLE_BOARD_CODE_MAX 129
 static const char *AppleBoardCode[][APPLE_BOARD_CODE_MAX] = {
   /* MacBook1,1    */ {"V3G", "VZ0", "TYU", "VZ1", "VMC", "VZ2", "WXS", "WXW", "X0W", "X10", "WXR", "WXV", "X0V", "X0Y", "WXT", "WXU", "X0X", "X0Z"},
   /* MacBook2,1    */ {"WES", "WEV", "W6V", "WET", "WEU", "WEW"},
@@ -625,6 +630,7 @@ static const char *AppleBoardCode[][APPLE_BOARD_CODE_MAX] = {
   /* Macmini6,1    */ {"F1HC", "DVF8"},
   /* Macmini6,2    */ {"DVF9", "F1H8", "F1G2", "F1H9"},
   /* Macmini7,1    */ {"G0MC", "FWY2", "FYRD", "G3N7", "G0MH", "G0MJ", "G3ND", "G0MK", "FYRF", "G0MF", "G3NC", "FYRK", "FYRH", "FYRJ", "G3N9", "G0MM", "G0MN", "G0MP", "G3N8"},
+  /* Macmini8,1    */ {""},
   /* iMac4,1       */ {""},
   /* iMac4,2       */ {""},
   /* iMac5,1       */ {""},
@@ -735,6 +741,7 @@ static uint32_t AppleModelYear[][APPLE_MODEL_YEAR_MAX] = {
   /* Macmini6,1                */ {2012, 2013, 2014},
   /* Macmini6,2                */ {2012, 2013, 2014},
   /* Macmini7,1                */ {2014},
+  /* Macmini8,1                */ {2018},
   /* iMac4,1                   */ {2006},
   /* iMac4,2                   */ {2006},
   /* iMac5,1                   */ {2006, 2007},
@@ -844,6 +851,7 @@ static uint32_t ApplePreferredModelYear[] = {
   /* Macmini6,1     */ 0,
   /* Macmini6,2     */ 0,
   /* Macmini7,1     */ 0,
+  /* Macmini8,1     */ 0,
   /* iMac4,1        */ 0,
   /* iMac4,2        */ 0,
   /* iMac5,1        */ 0,
