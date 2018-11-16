@@ -86,7 +86,7 @@ typedef enum {
   iMac5_1, // Intel Core 2 Duo T7400 @ 2.16 GHz
   iMac5_2, // Intel Core 2 Duo T5600 @ 1.83 GHz
   iMac6_1, // Intel Core 2 Duo T7400 @ 2.16 GHz
-  iMac7_1, // Intel Core 2 Extreme X7900 @ 2.80 GHz
+  iMac7_1, // Intel Core 2 Duo T7300 @ 2.00 GHz
   iMac8_1, // Intel Core 2 Duo E8435 @ 3.06 GHz
   iMac9_1, // Intel Core 2 Duo E8135 @ 2.66 GHz
   iMac10_1, // Intel Core 2 Duo E7600 @ 3.06 GHz
@@ -131,7 +131,7 @@ static PLATFORMDATA ApplePlatformData[] = {
     "MacBook", "1.2", "W88A041AWGP", "MacBook-White",
     { 0x01, 0x00, 0x13, 0x00, 0x0F, 0x00 },"branch", "m75", 0x00072001 },
   { "MacBook3,1", "MB31.88Z.008E.B02.0803051832", "Mac-F22788C8",
-    "MacBook", "1.3", "W8803HACY51", "MacBook-White",
+    "MacBook", "1.3", "W8747HACZ66", "MacBook-White",
     { 0x01, 0x00, 0x24, 0x00, 0x0F, 0x00 },"branch", "k36", 0x00072001 },
   { "MacBook4,1", "MB41.88Z.00C1.B00.0802091535", "Mac-F22788A9",
     "MacBook", "1.3", "W88A041A0P0", "MacBook-Black",
@@ -347,7 +347,7 @@ static PLATFORMDATA ApplePlatformData[] = {
     "iMac", "1.0", "W8652HACVGN", "iMac",
     { 0x01, 0x00, 0x08, 0x00, 0x0F, 0x00 },"NA", "NA", 0x00073002 },
   { "iMac7,1", "IM71.88Z.007A.B03.0803051705", "Mac-F42386C8",
-    "iMac", "1.0", "W8803HACY51", "iMac-Aluminum",
+    "iMac", "1.0", "W8741HACX87", "iMac-Aluminum",
     { 0x01, 0x00, 0x20, 0x00, 0x0F, 0x00 },"NA", "NA", 0x00073002 },
   { "iMac8,1", "IM81.88Z.00C1.B00.0802091538", "Mac-F227BEC8",
     "iMac", "1.3", "W8755HAC2E2", "iMac-Aluminum",
@@ -453,7 +453,7 @@ static PLATFORMDATA ApplePlatformData[] = {
 static const char *AppleModelCode[][APPLE_MODEL_CODE_MAX] = {
   /* MacBook1,1    */ {"U9B"},
   /* MacBook2,1    */ {"WGP"},
-  /* MacBook3,1    */ {"Y51"},
+  /* MacBook3,1    */ {"Z66"},
   /* MacBook4,1    */ {"0P0"},
   /* MacBook5,1    */ {"1AQ"},
   /* MacBook5,2    */ {"9GU"},
@@ -525,7 +525,7 @@ static const char *AppleModelCode[][APPLE_MODEL_CODE_MAX] = {
   /* iMac5,1       */ {"X1A"},
   /* iMac5,2       */ {"WH5"},
   /* iMac6,1       */ {"VGN"},
-  /* iMac7,1       */ {"Y51"},
+  /* iMac7,1       */ {"X87"},
   /* iMac8,1       */ {"2E2"},
   /* iMac9,1       */ {"6MJ"},
   /* iMac10,1      */ {"5PE"},
