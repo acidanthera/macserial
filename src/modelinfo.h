@@ -137,7 +137,7 @@ static PLATFORMDATA ApplePlatformData[] = {
     "MacBook", "1.3", "W88A041A0P0", "MacBook-Black",
     { 0x01, 0x00, 0x31, 0x00, 0x0F, 0x00 },"branch", "m82", 0x00074001 },
   { "MacBook5,1", "MB51.88Z.007D.B03.0904271443", "Mac-F42D89C8",
-    "MacBook", "1.3", "W8944T1S1AQ", "MacBook-Black",
+    "MacBook", "1.3", "W8944T1S1AQ", "MacBook-Aluminum",
     { 0x01, 0x00, 0x32, 0x00, 0x0F, 0x00 },"branch", "m97", 0x0007A002 },
   { "MacBook5,2", "MB52.88Z.0088.B05.0904162222", "Mac-F22788AA",
     "MacBook", "1.3", "W88AAAAA9GU", "MacBook-Black",
