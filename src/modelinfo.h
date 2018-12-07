@@ -328,7 +328,7 @@ static PLATFORMDATA ApplePlatformData[] = {
   { "Macmini7,1", "MM71.88Z.0226.B00.1709290808", "Mac-35C5E08120C7EEAF",
     "Mac mini", "1.0", "C02NN7NHG1J0", "Mini-Aluminum",
     { 0x02, 0x00, 0x24, 0x00, 0x0F, 0x00 },"j64", "j64", 0x00F04008 },
-  { "Macmini8,1", "MM81.88Z.0226.B00.1709290808", "",
+  { "Macmini8,1", "MM81.88Z.0226.B00.1709290808", "Mac-7BA5B2DFE22DDD8C",
     "Mac mini", "1.0", "C07XL9WEJYVX", "Mini-Aluminum",
     { 0x02, 0x00, 0x24, 0x00, 0x0F, 0x00 },"j64", "j64", 0x00F04008 },
   { "iMac4,1", "IM41.88Z.0055.B08.0609061538", "Mac-F42787C8",
