@@ -70,6 +70,7 @@ typedef enum {
   MacBookAir6_2, // Intel Core i5-4250U @ 1.30 GHz
   MacBookAir7_1, // Intel Core i5-5250U @ 1.60 GHz
   MacBookAir7_2, // Intel Core i7-5650U @ 2.20 GHz
+  MacBookAir8_1, // Intel Core i5-8210Y @ 1.60 GHz
   Macmini1_1, // Intel Core 2 Duo T7200 @ 2.00 GHz
   Macmini2_1, // Intel Core 2 Duo T5600 @ 1.83 GHz
   Macmini3_1, // Intel Core 2 Duo P7550 @ 2.26 GHz
@@ -121,7 +122,7 @@ typedef enum {
   Xserve3_1, // Intel Xeon E5520 @ 2.26 GHz
 } AppleModel;
 
-#define APPLE_MODEL_MAX 107
+#define APPLE_MODEL_MAX 108
 
 static PLATFORMDATA ApplePlatformData[] = {
   { "MacBook1,1", "MB11.88Z.0061.B03.0610121324", "Mac-F4208CC8",
@@ -298,6 +299,9 @@ static PLATFORMDATA ApplePlatformData[] = {
   { "MacBookAir7,2", "MBA71.88Z.0171.B00.1708072210", "Mac-937CB26E2E02BB01",
     "MacBook Air", "1.0", "C02Q1HACG940", "Air-Enclosure",
     { 0x02, 0x00, 0x27, 0x00, 0x0F, 0x00 },"j113", "j113", 0x0007B007 },
+  { "MacBookAir8,1", "220.220.100.0.0", "Mac-112818653D3AABFC",
+    "MacBook Air", "1.0", "C02XG1D8JK78", "Air-Enclosure",
+    { 0x02, 0x00, 0x27, 0x00, 0x0F, 0x00 },"j113", "j113", 0x0007B007 },
   { "Macmini1,1", "MM11.88Z.0055.B08.0610121326", "Mac-F4208EC8",
     "Mac mini", "1.0", "W8702N1JU35", "Mini-Aluminum",
     { 0x01, 0x00, 0x03, 0x00, 0x0F, 0x00 },"m40", "m40", 0x00078002 },
@@ -449,7 +453,7 @@ static PLATFORMDATA ApplePlatformData[] = {
 
 // Note, first code is always the code used by default at generation.
 // It should match with the suffix used in ApplePlatformData.
-#define APPLE_MODEL_CODE_MAX 65
+#define APPLE_MODEL_CODE_MAX 64
 static const char *AppleModelCode[][APPLE_MODEL_CODE_MAX] = {
   /* MacBook1,1    */ {"U9B"},
   /* MacBook2,1    */ {"WGP"},
@@ -509,6 +513,7 @@ static const char *AppleModelCode[][APPLE_MODEL_CODE_MAX] = {
   /* MacBookAir6,2 */ {"F5V7", "F5V8", "F6T5", "F6T6", "FH53", "FKYQ", "FKYR", "FLCG", "FM23", "FM3Y", "FM74", "FMR7", "FMR8", "FMRH", "FMRJ", "FMRK", "FMRL", "FMRV", "FMRW", "FMRY", "FN3Y", "FN40", "FN7G", "FP2P", "FQL9", "FQLC", "FQLD", "FQLF", "G6PM", /* late */ "G085", "G086", "G2CC", "G2CD", "G2GK", "G2GL", "G2GM", "G2GN", "G356", "G4H1", "G4H2", "G4H3", "G4HN", "G4HP", "G58K", "G5RN", "G5RP", "G5RQ", "G6D4", "G6D5", "G829", "G8J1", "GP4L", "GP4M"},
   /* MacBookAir7,1 */ {"H569", "GFWK", "GFWL", "GFWM", "GFWN", "GFWP", "GKJY", "GKK0", "GL28", "GL2D", "GL2F", "GL2H", "GLCQ", "GMC5", "GMC6", "GMC7", "GMC8", "GMC9", "GNJK", "GNJL"},
   /* MacBookAir7,2 */ {"G940", "G941", "G942", "G943", "G944", "GKJT", "GKJV", "GLCN", "GLCP", "GM14", "GM15", "GM38", "GM9G", "GMC3", "GN8C", "GNJJ", "H3QD", "H3QF", "H3QJ", "H3QK", "H569"},
+  /* MacBookAir8,1 */ {"JK78"},
   /* Macmini1,1    */ {"U35"},
   /* Macmini2,1    */ {"YL2"},
   /* Macmini3,1    */ {"19X"},
@@ -560,7 +565,7 @@ static const char *AppleModelCode[][APPLE_MODEL_CODE_MAX] = {
   /* Xserve3,1     */ {"6HS"},
 };
 
-#define APPLE_BOARD_CODE_MAX 129
+#define APPLE_BOARD_CODE_MAX 128
 static const char *AppleBoardCode[][APPLE_BOARD_CODE_MAX] = {
   /* MacBook1,1    */ {"V3G", "VZ0", "TYU", "VZ1", "VMC", "VZ2", "WXS", "WXW", "X0W", "X10", "WXR", "WXV", "X0V", "X0Y", "WXT", "WXU", "X0X", "X0Z"},
   /* MacBook2,1    */ {"WES", "WEV", "W6V", "WET", "WEU", "WEW"},
@@ -620,6 +625,7 @@ static const char *AppleBoardCode[][APPLE_BOARD_CODE_MAX] = {
   /* MacBookAir6,2 */ {"FD47", "FD49", "FD48", "FD4C", "FY58", "FY5C", "G3N3", "G8JR", "FY56", "FY57", "G3N4", "G8JV", "FHDQ", "FHDV", "G3N5", "G8JT", "FHDT", "FHDW", "G3N2", "G8JW"},
   /* MacBookAir7,1 */ {"G90F", "G90R", "G90V", "G909", "G90J", "G90K", "G90G", "G90M", "G90W", "G90Q", "G90Y", "G910"},
   /* MacBookAir7,2 */ {"G91Q", "G91T", "G91Y", "G925", "G928", "G92C", "G922", "G929", "G92F", "G91R", "G926", "G92G"},
+  /* MacBookAir8,1 */ {"KN2R"},
   /* Macmini1,1    */ {""},
   /* Macmini2,1    */ {""},
   /* Macmini3,1    */ {""},
@@ -731,6 +737,7 @@ static uint32_t AppleModelYear[][APPLE_MODEL_YEAR_MAX] = {
   /* MacBookAir6,2             */ {2013, 2014},
   /* MacBookAir7,1             */ {2015, 2016},
   /* MacBookAir7,2             */ {2015, 2016, 2017},
+  /* MacBookAir8,1             */ {2018},
   /* Macmini1,1                */ {2006},
   /* Macmini2,1                */ {2007, 2008, 2009},
   /* Macmini3,1                */ {2009},
@@ -841,6 +848,7 @@ static uint32_t ApplePreferredModelYear[] = {
   /* MacBookAir6,2  */ 0,
   /* MacBookAir7,1  */ 0,
   /* MacBookAir7,2  */ 0,
+  /* MacBookAir8,1  */ 0,
   /* Macmini1,1     */ 0,
   /* Macmini2,1     */ 0,
   /* Macmini3,1     */ 0,
