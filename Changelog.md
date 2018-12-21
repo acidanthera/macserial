@@ -5,6 +5,8 @@ macserial changelog
 - Added MacBookPro15,1/15,2 model data
 - Added board codes for current (17-char) models
 - Added additional model codes for various models
+- Added initial MacBookAir8,1 model data
+- Added initial MacMini8,1 model data
 
 #### v2.0.2
 - Added more models for detection
