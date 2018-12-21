@@ -81,7 +81,7 @@ typedef enum {
   Macmini6_1, // Intel Core i5-3210M @ 2.50 GHz
   Macmini6_2, // Intel Core i7-3615QM @ 2.30 GHz
   Macmini7_1, // Intel Core i5-4278U @ 2.60 GHz
-  Macmini8_1, //Intel Core i3-8100 @ 3.6 GHz
+  Macmini8_1, // Intel Core i3-8100 @ 3.6 GHz
   iMac4_1, // Intel Core 2 Duo T7200 @ 2.00 GHz
   iMac4_2, // Intel Core 2 Duo T5600 @ 1.83 GHz
   iMac5_1, // Intel Core 2 Duo T7400 @ 2.16 GHz
@@ -513,7 +513,7 @@ static const char *AppleModelCode[][APPLE_MODEL_CODE_MAX] = {
   /* MacBookAir6,2 */ {"F5V7", "F5V8", "F6T5", "F6T6", "FH53", "FKYQ", "FKYR", "FLCG", "FM23", "FM3Y", "FM74", "FMR7", "FMR8", "FMRH", "FMRJ", "FMRK", "FMRL", "FMRV", "FMRW", "FMRY", "FN3Y", "FN40", "FN7G", "FP2P", "FQL9", "FQLC", "FQLD", "FQLF", "G6PM", /* late */ "G085", "G086", "G2CC", "G2CD", "G2GK", "G2GL", "G2GM", "G2GN", "G356", "G4H1", "G4H2", "G4H3", "G4HN", "G4HP", "G58K", "G5RN", "G5RP", "G5RQ", "G6D4", "G6D5", "G829", "G8J1", "GP4L", "GP4M"},
   /* MacBookAir7,1 */ {"H569", "GFWK", "GFWL", "GFWM", "GFWN", "GFWP", "GKJY", "GKK0", "GL28", "GL2D", "GL2F", "GL2H", "GLCQ", "GMC5", "GMC6", "GMC7", "GMC8", "GMC9", "GNJK", "GNJL"},
   /* MacBookAir7,2 */ {"G940", "G941", "G942", "G943", "G944", "GKJT", "GKJV", "GLCN", "GLCP", "GM14", "GM15", "GM38", "GM9G", "GMC3", "GN8C", "GNJJ", "H3QD", "H3QF", "H3QJ", "H3QK", "H569"},
-  /* MacBookAir8,1 */ {"JK78"},
+  /* MacBookAir8,1 */ {"JK78", "JK77", "JK7C", "JK7D", "JK7F", "JK7G", "JK7L", "JK7M", "JK7P", "JK7Q", "JK7R", "JK7T"},
   /* Macmini1,1    */ {"U35"},
   /* Macmini2,1    */ {"YL2"},
   /* Macmini3,1    */ {"19X"},
@@ -524,7 +524,7 @@ static const char *AppleModelCode[][APPLE_MODEL_CODE_MAX] = {
   /* Macmini6,1    */ {"DY3H", "DWYL", "DWYM", "DY3G", "F9RK", "F9RL", "F9RM", "F9VV", "F9VW", "F9W0", "F9W1", "F9W2", "FD9G", "FD9H", "FD9J", "FD9K", "FDWK", "FGML", "FRFP", "FW56", "FW57", "G430"},
   /* Macmini6,2    */ {"DWYN", /* <- late, early */ "DWYL", "DWYM", "DY3G", "DY3H", "F9RK", "F9RL", "F9RM", "F9VV", "F9VW", "F9W0", "F9W1", "F9W2", "FD9G", "FD9H", "FD9J", "FD9K", "FDWK", "FGML", "FRFP", "FW56", "FW57", "G430", /* late */ "DWYN", "DY3J", "F9VY", "F9W3", "FC08", "FCCW", "FP14", "FP39"},
   /* Macmini7,1    */ {"G1J0", "G1HV", "G1HW", "G1HY", "G1J1", "G1J2", "GCVG", "GCVH", "GCVJ", "GCVN", "GCVP", "GCVQ", "GCVV", "GCVW", "GCVY", "GCW0", "GCW1", "GF1N", "GF1Q", "GF1T", "GJDC"},
-  /* Macmini8,1    */ {"JYVX"},
+  /* Macmini8,1    */ {"JYVX", "JYVW", "JYVY", "JYW0"},
   /* iMac4,1       */ {"U2P"},
   /* iMac4,2       */ {"V2H"},
   /* iMac5,1       */ {"X1A"},
@@ -625,7 +625,7 @@ static const char *AppleBoardCode[][APPLE_BOARD_CODE_MAX] = {
   /* MacBookAir6,2 */ {"FD47", "FD49", "FD48", "FD4C", "FY58", "FY5C", "G3N3", "G8JR", "FY56", "FY57", "G3N4", "G8JV", "FHDQ", "FHDV", "G3N5", "G8JT", "FHDT", "FHDW", "G3N2", "G8JW"},
   /* MacBookAir7,1 */ {"G90F", "G90R", "G90V", "G909", "G90J", "G90K", "G90G", "G90M", "G90W", "G90Q", "G90Y", "G910"},
   /* MacBookAir7,2 */ {"G91Q", "G91T", "G91Y", "G925", "G928", "G92C", "G922", "G929", "G92F", "G91R", "G926", "G92G"},
-  /* MacBookAir8,1 */ {"KN2R"},
+  /* MacBookAir8,1 */ {"KN2R", "KN7H", "KN7V", "KN86", "KN8M", "KN34", "KN3J", "KN3Y", "KMXD", "KMXQ", "KMY4", "KMYH", "KNDX", "KNF8", "KN9P", "KNC2", "KNCF", "KNCR", "KN5C", "KN5P", "KN62", "KN6F", "KN0L", "KN0Y", "KN19", "KN1N", "KNG0", "KNGC"},
   /* Macmini1,1    */ {""},
   /* Macmini2,1    */ {""},
   /* Macmini3,1    */ {""},
@@ -636,7 +636,7 @@ static const char *AppleBoardCode[][APPLE_BOARD_CODE_MAX] = {
   /* Macmini6,1    */ {"F1HC", "DVF8"},
   /* Macmini6,2    */ {"DVF9", "F1H8", "F1G2", "F1H9"},
   /* Macmini7,1    */ {"G0MC", "FWY2", "FYRD", "G3N7", "G0MH", "G0MJ", "G3ND", "G0MK", "FYRF", "G0MF", "G3NC", "FYRK", "FYRH", "FYRJ", "G3N9", "G0MM", "G0MN", "G0MP", "G3N8"},
-  /* Macmini8,1    */ {""},
+  /* Macmini8,1    */ {"KXPG", "KXVT", "KXW5", "KXQJ", "KXQW", "KXX7", "KXRY", "KXV3", "KXVG", "KXQ5", "KXYC", "KXWJ", "KXWW", "KXR7", "KXRL", "KXT9", "KXTQ", "KXPT", "JRR7", "JRRY", "JRT9", "JRV2", "JRXN", "JRY1", "JRP3", "JRPT", "JRQ5", "JRQW", "JRVG", "JRW7", "JRWL", "JRX9", "JRLY", "JRMN", "JRN1", "JRNQ", "JRFY", "JRGN", "JRH1", "JRHQ", "JRK5", "JRKW", "JRLL", "JRDW", "JRFL", "JFTF", "JFTG", "JRJ3", "JRJT"},
   /* iMac4,1       */ {""},
   /* iMac4,2       */ {""},
   /* iMac5,1       */ {""},
