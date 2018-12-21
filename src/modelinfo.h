@@ -81,7 +81,7 @@ typedef enum {
   Macmini6_1, // Intel Core i5-3210M @ 2.50 GHz
   Macmini6_2, // Intel Core i7-3615QM @ 2.30 GHz
   Macmini7_1, // Intel Core i5-4278U @ 2.60 GHz
-  Macmini8_1, // Intel Core i3-8100 @ 3.6 GHz
+  Macmini8_1, // Intel Core i3-8100B @ 3.6 GHz
   iMac4_1, // Intel Core 2 Duo T7200 @ 2.00 GHz
   iMac4_2, // Intel Core 2 Duo T5600 @ 1.83 GHz
   iMac5_1, // Intel Core 2 Duo T7400 @ 2.16 GHz
