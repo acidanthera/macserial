@@ -110,6 +110,8 @@ typedef enum {
   iMac18_1, // Intel Core i5-7360U @ 2.30 GHz
   iMac18_2, // Intel Core i5-7500 @ 3.40 GHz
   iMac18_3, // Intel Core i7-7700K @ 4.20 GHz
+  iMac19_1, // Intel 8500, 8600, 9600K, 9900K
+  iMac19_2, // Intel 8100, 8500, 8700
   iMacPro1_1, // Intel Xeon W-2140B CPU @ 3.20 GHz
   MacPro1_1, // Intel Xeon X5355 @ 2.66 GHz x2
   MacPro2_1, // Intel Xeon X5365 @ 2.99 GHz x2
@@ -122,7 +124,7 @@ typedef enum {
   Xserve3_1, // Intel Xeon E5520 @ 2.26 GHz
 } AppleModel;
 
-#define APPLE_MODEL_MAX 108
+#define APPLE_MODEL_MAX 110
 
 static PLATFORMDATA ApplePlatformData[] = {
   { "MacBook1,1", "MB11.88Z.0061.B03.0610121324", "Mac-F4208CC8",
@@ -419,6 +421,12 @@ static PLATFORMDATA ApplePlatformData[] = {
   { "iMac18,3", "IM183.88Z.0154.B00.1712220135", "Mac-BE088AF8C5EB4FA2",
     "iMac", "1.0", "C02TDHACJ1GJ", "iMac-Aluminum",
     { 0x02, 0x00, 0x41, 0x00, 0x0F, 0x00 },"j133_4_5", "j135", 0x00F07009 },
+  { "iMac19,1", "IM183.88Z.0154.B00.1712220135", "Mac-AA95B1DDAB278B95",
+    "iMac", "1.0", "C02Y9051JV3P", "iMac-Aluminum",
+    { 0x44, 0xE6, 0x6E, 0x2A, 0xC8, 0x5C },"NA", "NA", 0x000000000 },
+  { "iMac19,2", "IM183.88Z.0154.B00.1712220135", "Mac-63001698E7A34814",
+    "iMac", "1.0", "C02Y80BVJWDW", "iMac-Aluminum",
+    { 0x44, 0xE6, 0x6E, 0x28, 0x9F, 0x5C },"NA", "NA", 0x000000000 },
   { "iMacPro1,1", "15.16.6059.0.0,0", "Mac-7BA5B2D9E42DDD94",
     "iMac Pro", "1.0", "C02VVHACHX87", "iMacPro-Aluminum",
     { 0x02, 0x00, 0x41, 0x00, 0x0F, 0x00 },"j137", "j137", 0x00F07009 },
@@ -553,6 +561,8 @@ static const char *AppleModelCode[][APPLE_MODEL_CODE_MAX] = {
   /* iMac18,1      */ {"H7JY", "H7VF"},
   /* iMac18,2      */ {"J1G5"},
   /* iMac18,3      */ {"J1GJ", "J1GQ", "J1GG"},
+  /* iMac19,1      */ {"JV3Q", "JV3P", "JV3N"},
+  /* iMac19,2      */ {"JWDW", "JWDX"},
   /* iMacPro1,1    */ {"HX87", "HX8F", "JL53", "JL54", "JL55", "JLCN", "JLCP", "JLCR", "JLCT", "JLCV", "JLCW", "JLCX", "JLCY", "JLD0", "JLD1", "JLD2"},
   /* MacPro1,1     */ {"UPZ"},
   /* MacPro2,1     */ {"UPZ"},
@@ -665,6 +675,8 @@ static const char *AppleBoardCode[][APPLE_BOARD_CODE_MAX] = {
   /* iMac18,1      */ {"H69F", "H668"},
   /* iMac18,2      */ {"J0DX", "J0DY", "J0F0", "J0F1", "HNWJ", "HNWK", "J0RY", "J0T1", "HNWL", "HNWM", "HNWN", "HNWP"},
   /* iMac18,3      */ {"J0PG", "J0PH", "J0PJ", "J0PC", "J0PD", "J0PF", "HX77", "HX78", "HX79", "HX7C", "HX7D", "HX7F", "HNL6", "HNL7", "HNL8"},
+  /* iMac19,1      */ {"LNV9", "KDP0"},
+  /* iMac19,2      */ {"KGQG"},
   /* iMacPro1,1    */ {"JG36", "JG3C", "JG3D", "JG37", "JG38", "JG39", "JML3", "JMPY", "JMQ0", "JML4", "JMQ1", "JMQ2", "J806", "J807", "J808", "J80H", "J80J", "J80M", "J803", "J804", "J805", "J809", "J80D", "J80F"},
   /* MacPro1,1     */ {""},
   /* MacPro2,1     */ {""},
@@ -777,6 +789,8 @@ static uint32_t AppleModelYear[][APPLE_MODEL_YEAR_MAX] = {
   /* iMac18,1                  */ {2017},
   /* iMac18,2                  */ {2017},
   /* iMac18,3                  */ {2017, 2018},
+  /* iMac19,1                  */ {2019},
+  /* iMac19,2                  */ {2019},
   /* iMacPro1,1                */ {2017},
   /* MacPro1,1                 */ {2006, 2007, 2008},
   /* MacPro2,1                 */ {2007, 2008},
@@ -888,6 +902,8 @@ static uint32_t ApplePreferredModelYear[] = {
   /* iMac18,1       */ 0,
   /* iMac18,2       */ 0,
   /* iMac18,3       */ 0,
+  /* iMac19,1       */ 0,
+  /* iMac19,2       */ 0,
   /* iMacPro1,1     */ 0,
   /* MacPro1,1      */ 0,
   /* MacPro2,1      */ 0,
