@@ -110,8 +110,8 @@ typedef enum {
   iMac18_1, // Intel Core i5-7360U @ 2.30 GHz
   iMac18_2, // Intel Core i5-7500 @ 3.40 GHz
   iMac18_3, // Intel Core i7-7700K @ 4.20 GHz
-  iMac19_1, // Intel 8500, 8600, 9600K, 9900K
-  iMac19_2, // Intel 8100, 8500, 8700
+  iMac19_1, // Intel Core i7-9600K @ 3.7 GHz
+  iMac19_2, // Intel Core i5-8500 @ 3 GHz
   iMacPro1_1, // Intel Xeon W-2140B CPU @ 3.20 GHz
   MacPro1_1, // Intel Xeon X5355 @ 2.66 GHz x2
   MacPro2_1, // Intel Xeon X5365 @ 2.99 GHz x2
@@ -422,10 +422,10 @@ static PLATFORMDATA ApplePlatformData[] = {
     "iMac", "1.0", "C02TDHACJ1GJ", "iMac-Aluminum",
     { 0x02, 0x00, 0x41, 0x00, 0x0F, 0x00 },"j133_4_5", "j135", 0x00F07009 },
   { "iMac19,1", "IM183.88Z.0154.B00.1712220135", "Mac-AA95B1DDAB278B95",
-    "iMac", "1.0", "C02Y9051JV3P", "iMac-Aluminum",
+    "iMac", "1.0", "C02Y90H3JV3Q", "iMac-Aluminum",
     { 0x44, 0xE6, 0x6E, 0x2A, 0xC8, 0x5C },"NA", "NA", 0x000000000 },
   { "iMac19,2", "IM183.88Z.0154.B00.1712220135", "Mac-63001698E7A34814",
-    "iMac", "1.0", "C02Y80BVJWDW", "iMac-Aluminum",
+    "iMac", "1.0", "C02Y93YXJWDX", "iMac-Aluminum",
     { 0x44, 0xE6, 0x6E, 0x28, 0x9F, 0x5C },"NA", "NA", 0x000000000 },
   { "iMacPro1,1", "15.16.6059.0.0,0", "Mac-7BA5B2D9E42DDD94",
     "iMac Pro", "1.0", "C02VVHACHX87", "iMacPro-Aluminum",
