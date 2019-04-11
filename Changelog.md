@@ -1,5 +1,9 @@
 macserial changelog
 ===================
+#### v2.0.5
+- Added initial iMac19,1 and iMac19,2 model data
+- Added --verify command to check MLB
+
 #### v2.0.4
 - Added initial MacBookAir8,1 model data
 - Added initial MacMini8,1 model data

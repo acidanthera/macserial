@@ -726,6 +726,7 @@ static int usage(const char *app) {
     " --generate       (-g)  generate serial for current model\n"
     " --generate-all   (-a)  generate serial for all models\n"
     " --info <serial>  (-i)  decode serial information\n"
+    " --verify <mlb>         verify MLB checksum\n"
     " --list           (-l)  list known mac models\n"
     " --mlb <serial>         generate MLB based on serial\n"
     " --sys            (-s)  get system info\n\n"
@@ -769,7 +770,11 @@ int main(int argc, char *argv[]) {
       if (++i == argc) return usage(argv[0]);
       mode = MODE_SERIAL_INFO;
       passed_serial = argv[i];
-    } else if (!strcmp(argv[i], "-l") || !strcmp(argv[i], "--list")) {
+    } else if (!strcmp(argv[i], "--verify")) {
+      if (++i == argc) return usage(argv[0]);
+      mode = MODE_MLB_INFO;
+      passed_serial = argv[i];
+    }else if (!strcmp(argv[i], "-l") || !strcmp(argv[i], "--list")) {
       mode = MODE_LIST_MODELS;
     } else if (!strcmp(argv[i], "-mlb") || !strcmp(argv[i], "--mlb")) {
       // -mlb is supported due to legacy versions.
@@ -864,6 +869,18 @@ int main(int argc, char *argv[]) {
     get_system_info();
   } else if (mode == MODE_SERIAL_INFO) {
     get_serial_info(passed_serial, &info, true);
+  } else if (mode == MODE_MLB_INFO) {
+    size_t len = strlen(passed_serial);
+    if (len == 13 || len == 17) {
+      printf("Valid MLB length: %s\n", len == 13 ? "legacy" : "modern");
+    } else {
+      printf("WARN: Invalid MLB length: %u\n", (unsigned) len);
+    }
+    if (verify_mlb(passed_serial, strlen(passed_serial))) {
+      printf("Valid MLB checksum.\n");
+    } else {
+      printf("WARN: Invalid MLB checksum!\n");
+    }
   } else if (mode == MODE_LIST_MODELS) {
     printf("Available models:\n");
     for (int32_t j = 0; j < APPLE_MODEL_MAX; j++) {

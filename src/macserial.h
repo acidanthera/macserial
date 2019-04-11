@@ -10,7 +10,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#define PROGRAM_VERSION "2.0.4"
+#define PROGRAM_VERSION "2.0.5"
 
 #ifdef __GNUC__
 uint32_t arc4random(void) __attribute__((weak));
@@ -86,6 +86,7 @@ typedef struct {
 typedef enum {
   MODE_SYSTEM_INFO,
   MODE_SERIAL_INFO,
+  MODE_MLB_INFO,
   MODE_LIST_MODELS,
   MODE_GENERATE_MLB,
   MODE_GENERATE_CURRENT,
